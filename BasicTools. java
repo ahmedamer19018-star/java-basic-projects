@@ -1,0 +1,56 @@
+import java.util.Scanner;
+
+public class BasicTools {
+
+    // Method to perform basic calculations
+    public static double calculate(double num1, double num2, char operator) {
+        switch (operator) {
+            case '+': return num1 + num2;
+            case '-': return num1 - num2;
+            case '*': return num1 * num2;
+            case '/': 
+                if (num2 != 0) return num1 / num2;
+                System.out.println("Error: Cannot divide by zero!");
+                return 0;
+            default:
+                System.out.println("Invalid operator!");
+                return 0;
+        }
+    }
+
+    // Method to convert Celsius to Fahrenheit
+    public static double celsiusToFahrenheit(double celsius) {
+        return (celsius * 9 / 5) + 32;
+    }
+
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+
+        System.out.println("--- Basic Tools Application ---");
+        System.out.println("1. Calculator");
+        System.out.println("2. Celsius to Fahrenheit Converter");
+        System.out.print("Choose a tool: ");
+        int choice = scanner.nextInt();
+
+        if (choice == 1) {
+            System.out.print("Enter first number: ");
+            double n1 = scanner.nextDouble();
+            System.out.print("Enter operator (+, -, *, /): ");
+            char op = scanner.next().charAt(0);
+            System.out.print("Enter second number: ");
+            double n2 = scanner.nextDouble();
+
+            double result = calculate(n1, n2, op);
+            System.out.println("Result: " + result);
+
+        } else if (choice == 2) {
+            System.out.print("Enter temperature in Celsius: ");
+            double c = scanner.nextDouble();
+            System.out.println("In Fahrenheit: " + celsiusToFahrenheit(c));
+        } else {
+            System.out.println("Invalid choice.");
+        }
+
+        scanner.close();
+    }
+}
